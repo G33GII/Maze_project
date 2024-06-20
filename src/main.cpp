@@ -21,7 +21,50 @@ int main( int argc, char* args[] )
 	/* The image we will load and show on the screen */
 	SDL_Surface *helloword = NULL;
 
-	/*Initialize SDL  */
+	if (init() == false)
+	{
+		printf( "Failed to initialize!\n" );
+	}
+	else
+	{
+		if (!loadMedia())
+		{
+			printf( "Failed to load media!\n" );
+		}
+		else
+        {
+            //Apply the image
+            SDL_BlitSurface( gHelloWorld, NULL, gScreenSurface, NULL );
+			//Update the surface
+            SDL_UpdateWindowSurface( gWindow );
+			//Hack to get window to stay up
+            SDL_Event e; bool quit = false; while( quit == false ){ while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
+        }
+    }
+	}
+
+	
+
+	/* Free resources and close SDL */
+    close();
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Initialize SDL  */
 	if( SDL_Init( SDL_INIT_VIDEO ) < 0 )
 	{
 		printf( "SDL could not initialize! SDL_Error: %s\n", SDL_GetError() );
@@ -49,12 +92,4 @@ int main( int argc, char* args[] )
             SDL_Event e; bool quit = false; while( quit == false ){ while( SDL_PollEvent( &e ) ){ if( e.type == SDL_QUIT ) quit = true; } }
 		}
 	}
-
-	/* Destroy window */
-	SDL_DestroyWindow( window );
-
-	/* Quit SDL subsystems */
-	SDL_Quit();
-
-	return 0;
-}
+	
