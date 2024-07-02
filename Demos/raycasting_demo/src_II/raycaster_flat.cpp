@@ -24,6 +24,12 @@
 #define SCREEN_HEIGHT 720
 
 #define MAP_SIZE 16
+/**
+ * A basic big room, with a wall around it (the values 1),
+ * a small room inside it (the values 2),
+ * a few pilars (the values 3),
+ * and a corridor with a room (the values 4).
+ */
 const uint8_t MAP[MAP_SIZE * MAP_SIZE] = {
 	1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 	1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,
@@ -74,6 +80,8 @@ ColorRGBA RGBA_Blue  = {.r = 0x00, .g = 0x00, .b = 0xFF, .a = 0xFF};
 int xy2index(int x, int y, int w) {
     return y * w + x;
 }
+
+/* ============================================================================================= */
 
 void render(State *state, Player* player) {
     for (int x = 0; x < SCREEN_WIDTH; ++x) {
@@ -177,6 +185,9 @@ void render(State *state, Player* player) {
         SDL_RenderDrawLine(state->renderer, x, drawStart, x, drawEnd);
 	}
 }
+
+
+/* ============================================================================================= */
 
 int main(void) {
 	ASSERT(!SDL_Init(SDL_INIT_VIDEO),
