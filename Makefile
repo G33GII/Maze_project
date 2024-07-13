@@ -1,12 +1,12 @@
 #OBJS specifies which files to compile as part of the project
-OBJS = src/*.cpp
+OBJS = src/*.c
 
 #CC specifies which compiler we're using
 CC = g++
 
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresses all warnings
-COMPILER_FLAGS = -w -Iinc # -Wall -Werror -Wextra -pedantic
+COMPILER_FLAGS = -w -Iinc -lSDL2_image # -Wall -Werror -Wextra -pedantic
 
 #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = -lSDL2
